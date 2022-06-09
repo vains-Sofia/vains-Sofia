@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://vains-sofia.github.io/vains-Sofia/images/todo.jpeg">
 <meta property="article:published_time" content="2022-05-11T18:57:17.000Z">
-<meta property="article:modified_time" content="2022-06-02T08:19:55.372Z">
+<meta property="article:modified_time" content="2022-06-09T06:47:54.436Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Spring Authorization Server">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      2k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      17 分钟
     </span>
   
 
@@ -283,8 +283,17 @@ common项目中的Swagger配置的认证方式改为授权码模式</p>
 <li><p><input checked="" disabled="" type="checkbox"> 
 升级Spring authorization server的版本为0.3.0</p>
 </li>
-<li><p><input disabled="" type="checkbox"> 
+<li><p><input checked="" disabled="" type="checkbox"> 
 自定义登录页面美化</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+自定义RegisteredClientRepository，实现增删改查</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+移除密码模式</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+自定义授权确认页面汉化</p>
 </li>
 <li><p><input disabled="" type="checkbox"> 
 <del>验证码模式登陆实现</del></p>
@@ -297,19 +306,44 @@ GitHub登陆用户持久化</p>
 <p><a target="_blank" rel="noopener" href="http://f72e1293a051.c.methodot.com:33184/system/test/test02">http://f72e1293a051.c.methodot.com:33184/system/test/test02</a></p>
 </blockquote>
 <h3 id="code换取token-Basic-auth"><a href="#code换取token-Basic-auth" class="headerlink" title="code换取token(Basic auth)"></a>code换取token(Basic auth)</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="http://81b1d78edd1a.c.methodot.com:33150/oauth2/token?code=AUTHORIZATION_CODE&amp;grant_type=authorization_code&amp;redirect_uri=http://f72e1293a051.c.methodot.com:33184/code/redirect">http://81b1d78edd1a.c.methodot.com:33150/oauth2/token?code=AUTHORIZATION_CODE&amp;grant_type=authorization_code&amp;redirect_uri=http://f72e1293a051.c.methodot.com:33184/code/redirect</a></p>
+<p><a target="_blank" rel="noopener" href="http://authorization-server/oauth2/token?code=AUTHORIZATION_CODE&amp;grant_type=authorization_code&amp;redirect_uri=http://f72e1293a051.c.methodot.com:33184/code/redirect">http://authorization-server/oauth2/token?code=AUTHORIZATION_CODE&amp;grant_type=authorization_code&amp;redirect_uri=http://f72e1293a051.c.methodot.com:33184/code/redirect</a></p>
 </blockquote>
 <h3 id="撤销Token-Basic-auth"><a href="#撤销Token-Basic-auth" class="headerlink" title="撤销Token(Basic auth)"></a>撤销Token(Basic auth)</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="http://81b1d78edd1a.c.methodot.com:33150/oauth2/revoke?token=ACCESS_TOKEN">http://81b1d78edd1a.c.methodot.com:33150/oauth2/revoke?token=ACCESS_TOKEN</a></p>
+<p><a target="_blank" rel="noopener" href="http://authorization-server/oauth2/revoke?token=ACCESS_TOKEN">http://authorization-server/oauth2/revoke?token=ACCESS_TOKEN</a></p>
 </blockquote>
 <h3 id="Token自省接口-Basic-auth"><a href="#Token自省接口-Basic-auth" class="headerlink" title="Token自省接口(Basic auth)"></a>Token自省接口(Basic auth)</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="http://81b1d78edd1a.c.methodot.com:33150/oauth2/introspect?token=ACCESS_TOKEN">http://81b1d78edd1a.c.methodot.com:33150/oauth2/introspect?token=ACCESS_TOKEN</a></p>
+<p><a target="_blank" rel="noopener" href="http://authorization-server/oauth2/introspect?token=ACCESS_TOKEN">http://authorization-server/oauth2/introspect?token=ACCESS_TOKEN</a></p>
 </blockquote>
 <h3 id="刷新Token-Basic-auth"><a href="#刷新Token-Basic-auth" class="headerlink" title="刷新Token(Basic auth)"></a>刷新Token(Basic auth)</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="http://81b1d78edd1a.c.methodot.com:33150/oauth2/token?grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN">http://81b1d78edd1a.c.methodot.com:33150/oauth2/token?grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN</a></p>
+<p><a target="_blank" rel="noopener" href="http://authorization-server/oauth2/token?grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN">http://authorization-server/oauth2/token?grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN</a></p>
 </blockquote>
-<h3 id="密码模式获取Token-客户端设置的认证类型"><a href="#密码模式获取Token-客户端设置的认证类型" class="headerlink" title="密码模式获取Token(客户端设置的认证类型)"></a>密码模式获取Token(客户端设置的认证类型)</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="http://81b1d78edd1a.c.methodot.com:33150/oauth2/token?username=123&amp;password=123456&amp;grant_type=password&amp;scope=user.userInfo">http://81b1d78edd1a.c.methodot.com:33150/oauth2/token?username=123&amp;password=123456&amp;grant_type=password&amp;scope=user.userInfo</a></p>
+<h3 id="密码模式获取Token-客户端设置的认证类型"><a href="#密码模式获取Token-客户端设置的认证类型" class="headerlink" title="密码模式获取Token(客户端设置的认证类型)"></a><del>密码模式获取Token(客户端设置的认证类型)</del></h3><blockquote>
+<p><del><a target="_blank" rel="noopener" href="http://authorization-server/oauth2/token?username=123&amp;password=123456&amp;grant_type=password&amp;scope=user.userInfo">http://authorization-server/oauth2/token?username=123&amp;password=123456&amp;grant_type=password&amp;scope=user.userInfo</a></del></p>
+</blockquote>
+<h3 id="PKCE-Proof-Key-for-Code-Exchange-方式获取token-Basic-auth"><a href="#PKCE-Proof-Key-for-Code-Exchange-方式获取token-Basic-auth" class="headerlink" title="PKCE(Proof Key for Code Exchange)方式获取token(Basic auth)"></a>PKCE(Proof Key for Code Exchange)方式获取token(Basic auth)</h3><blockquote>
+<p>认证URL：<a target="_blank" rel="noopener" href="http://authorization-server/oauth2/authorize?client_id=admin&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;code_challenge=CODE_CHALLENGE&amp;code_challenge_method=S256&amp;scope=SCOPE&amp;state=STATE">http://authorization-server/oauth2/authorize?client_id=admin&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;code_challenge=CODE_CHALLENGE&amp;code_challenge_method=S256&amp;scope=SCOPE&amp;state=STATE</a></p>
+</blockquote>
+<blockquote>
+<p>访问成功跳转至Redirect_Uri中，在Redirect_Uri中请求: <a target="_blank" rel="noopener" href="http://127.0.0.1:5000/oauth2/token?code_verifier=CODE_VERIFIER&amp;code=CODE&amp;grant_type=authorization_code&amp;redirect_uri=REDIRECT_URI&amp;state=STATE">http://127.0.0.1:5000/oauth2/token?code_verifier=CODE_VERIFIER&amp;code=CODE&amp;grant_type=authorization_code&amp;redirect_uri=REDIRECT_URI&amp;state=STATE</a></p>
+</blockquote>
+<h4 id="参数解释"><a href="#参数解释" class="headerlink" title="参数解释"></a>参数解释</h4><blockquote>
+<ol>
+<li>client_id: 客户端的id</li>
+<li>client_secret: 客户端秘钥</li>
+<li>redirect_uri：申请授权成功后的回调地址</li>
+<li>response_type：授权码模式固定参数：code</li>
+<li>code_verifier：一段随机字符串</li>
+<li>code_challenge：根据指定的加密方式将code_verifier加密后得到的字符串</li>
+<li>code_challenge_method：加密方式</li>
+<li>scope：客户端申请的授权范围</li>
+<li>state：跟随authCode原样返回，防止CSRF攻击</li>
+<li>grant_type：指定获取token 的方式：<ol>
+<li>refresh_token：刷新token</li>
+<li>authorization_code：根据授权码模式的授权码获取</li>
+<li>password：密码模式获取</li>
+</ol>
+</li>
+</ol>
 </blockquote>
 
             </div>
